@@ -120,3 +120,5 @@ b88fa97d1896   debian-bookworm-ssh   "/lib/systemd/systemd"   4 days ago   Up 4 
 de9ab495f71d   debian-bookworm-ssh   "/lib/systemd/systemd"   4 days ago   Up 4 days   0.0.0.0:6443->6443/tcp, :::6443->6443/tcp, 0.0.0.0:2223->22/tcp, :::2223->22/tcp   server
 4e7ebeaaeeea   debian-bookworm-ssh   "/lib/systemd/systemd"   4 days ago   Up 4 days   0.0.0.0:8080->8080/tcp, :::8080->8080/tcp, 0.0.0.0:2222->22/tcp, :::2222->22/tcp   jumpbox
 ```
+
+Next: [Setting up Jumpbox](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/02-jumpbox.md)

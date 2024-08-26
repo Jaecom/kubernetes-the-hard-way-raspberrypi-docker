@@ -154,3 +154,5 @@ NAME     STATUS   ROLES    AGE    VERSION
 node-0   Ready    <none>   1m     v1.28.3
 node-1   Ready    <none>   10s    v1.28.3
 ```
+
+Next: [Setting Up Kubectl](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/10-configuring-kubectl.md)

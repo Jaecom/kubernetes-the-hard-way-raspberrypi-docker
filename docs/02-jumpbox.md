@@ -11,7 +11,7 @@ ssh root@localhost -p 2222
 ### Install Command Line Utilities
 
 ```
-apt update 
+apt update
 apt -y install wget curl vim openssl git
 ```
 
@@ -96,3 +96,5 @@ kubectl version --client
 Client Version: v1.28.3
 Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3
 ```
+
+Next: [Provisioning Resources](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/03-compute-resources.md)

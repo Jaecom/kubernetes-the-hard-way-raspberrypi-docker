@@ -277,3 +277,5 @@ while read IP FQDN HOST SUBNET; do
     root@${HOST} "cat hosts >> /etc/hosts"
 done < machines.txt
 ```
+
+Next: [Generating Certificates](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/04-certificate-authority.md)

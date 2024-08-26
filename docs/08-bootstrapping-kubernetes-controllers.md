@@ -138,3 +138,5 @@ curl -k --cacert ca.crt https://server.kubernetes.local:6443/version
   "platform": "linux/arm64"
 }
 ```
+
+Next: [Setting Up Worker Nodes](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/09-bootstrapping-kubernetes-workers.md)

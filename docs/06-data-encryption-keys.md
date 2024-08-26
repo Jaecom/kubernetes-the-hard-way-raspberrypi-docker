@@ -35,3 +35,5 @@ resources:
               secret: ${ENCRYPTION_KEY} #manually copy and paste the encryption key
       - identity: {}
 ```
+
+Next: [Bootstrapping etcd](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/07-bootstrapping-etcd.md)

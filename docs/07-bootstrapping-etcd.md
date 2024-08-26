@@ -64,3 +64,5 @@ View the logs of etcd server. Look out for any errors and warnings:
 ```
 systemctl logs etcd
 ```
+
+Next: [Setting Up Kubernetes Controllers](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/08-bootstrapping-kubernetes-controllers.md)

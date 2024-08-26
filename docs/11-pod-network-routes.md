@@ -1,0 +1,1 @@
+Next: [Testing](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/12-smoke-test.md)

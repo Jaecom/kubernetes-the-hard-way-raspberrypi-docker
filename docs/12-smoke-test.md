@@ -1,0 +1,1 @@
+Next: [Provisioning Resources](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/03-compute-resources.md)

@@ -1,0 +1,1 @@
+Next: [Configuring Pod Networks](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/11-pod-network-routes.md)
