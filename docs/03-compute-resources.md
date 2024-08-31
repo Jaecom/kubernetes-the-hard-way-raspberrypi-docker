@@ -2,7 +2,7 @@
 
 ### Configuring ca.conf
 
-First, in your raspberry pi machine, get the ip addresses of each container in docker:
+First, in your raspberry pi machine, get the ip addresses of each docker container:
 
 ```
 sudo docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' jumpbox server node-0 node-1
@@ -17,10 +17,13 @@ You should see something like this (in order):
 172.17.0.5 #node-1
 ```
 
-Ssh into your jumpbox and edit the ca.conf file:
+Ssh into your `jumpbox` and edit the ca.conf file:
 
 ```
 ssh root@localhost -p 2222
+```
+
+```
 cd kubernetes-the-hard-way
 vim ca.conf
 ```
@@ -51,6 +54,15 @@ subjectAltName       = DNS:node-1, IP:172.17.0.5  # IP for node-1
 subjectKeyIdentifier = hash
 
 ...
+[kube-proxy_req_extensions]
+basicConstraints     = CA:FALSE
+extendedKeyUsage     = clientAuth, serverAuth
+keyUsage             = critical, digitalSignature, keyEncipherment
+nsCertType           = client
+nsComment            = "Kube Proxy Certificate"
+subjectAltName       = @kube-proxy_alt_names
+subjectKeyIdentifier = hash
+
 
 [kube-proxy_alt_names]
 IP.0  = 172.17.0.4  # IP for node-0
@@ -99,7 +111,7 @@ DNS.6 = api-server.kubernetes.local
 
 ## Machines.txt
 
-Create machines.txt. Replace the ip addresses in the beginning with the appropriate ip addresses of your docker containers.
+Create `machines.txt`. Replace the ip addresses in the beginning with the appropriate ip addresses of your docker containers.
 
 ```
 172.17.0.3 server.kubernetes.local server
@@ -137,7 +149,7 @@ while read IP FQDN HOST SUBNET; do
 done < machines.txt
 ```
 
-Check the public key access is working:
+Check that SSH is working for the other containers:
 
 ```
 while read IP FQDN HOST SUBNET; do
@@ -162,9 +174,6 @@ while read IP FQDN HOST SUBNET; do
 
     # Append the FQDN and hostname to /etc/hosts on the remote machine
     ssh -n root@${IP} "echo '127.0.1.1 ${FQDN} ${HOST}' >> /etc/hosts"
-
-    # Remove duplicate lines in /etc/hosts on the remote machine
-    ssh -n root@${IP} "awk '!seen[\$0]++' /etc/hosts > /tmp/hosts && mv /tmp/hosts /etc/hosts"
 
     # Write the hostname to /etc/hostname on the remote machine
     ssh -n root@${IP} "echo ${HOST} > /etc/hostname"
@@ -225,31 +234,27 @@ Append the DNS entries from hosts to /etc/hosts:
 
 ```
 cat hosts >> /etc/hosts
-
 ```
 
 Verify that the /etc/hosts file has been updated:
 
 ```
 cat /etc/hosts
-
 ```
 
 ```
-127.0.0.1       localhost
-127.0.1.1       jumpbox
-
-# The following lines are desirable for IPv6 capable hosts
-::1     localhost ip6-localhost ip6-loopback
-ff02::1 ip6-allnodes
-ff02::2 ip6-allrouters
-
-
+127.0.0.1	localhost
+::1	localhost ip6-localhost ip6-loopback
+fe00::0	ip6-localnet
+ff00::0	ip6-mcastprefix
+ff02::1	ip6-allnodes
+ff02::2	ip6-allrouters
+172.17.0.2	333815efab69
 
 # Kubernetes The Hard Way
-XXX.XXX.XXX.XXX server.kubernetes.local server
-XXX.XXX.XXX.XXX node-0.kubernetes.local node-0
-XXX.XXX.XXX.XXX node-1.kubernetes.local node-1
+172.17.0.3 server.kubernetes.local server
+172.17.0.4 node-0.kubernetes.local node-0
+172.17.0.5 node-1.kubernetes.local node-1
 ```
 
 At this point you should be able to SSH to each machine listed in the machines.txt file using a hostname.

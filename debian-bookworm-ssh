@@ -1,0 +1,30 @@
+# Use the Debian Bookworm base image
+FROM debian:bookworm
+
+# Install necessary packages including systemd, OpenSSH server, and ca-certificates
+RUN apt update && \
+    apt install -y systemd systemd-sysv openssh-server nano iproute2 ca-certificates cgroup-tools && \\
+    update-ca-certificates && \
+    apt clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Create necessary directory for the SSH daemon to run
+RUN mkdir -p /var/run/sshd
+
+# Set root password (replace 'rootpassword' with a strong password)
+RUN echo 'root:admin' | chpasswd
+
+# Allow root login (optional and not recommended for production)
+RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+# SSH login fix. Otherwise user is kicked off after login
+RUN sed -i 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' /etc/pam.d/sshd
+
+# Enable SSH service
+RUN systemctl enable ssh
+
+# Expose SSH port
+EXPOSE 22
+
+# Use systemd as the init system
+CMD ["/lib/systemd/systemd"]

@@ -1,8 +1,9 @@
 # Setup the jumpbox
 
-You can follow kelseyhightower's directions without any changes to the code in the part: [Set Up The Jumpbox](https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/02-jumpbox.md). I will put the shortened version of the guide below for convenience:
+> [!NOTE]
+> In this section, you can follow the steps without any changes in kelseyhightower's official guide: [02-jumpbox.md](https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/02-jumpbox.md). I added the shortened version of the code below for convenience.
 
-Log in to the jumpbox:
+Log in to the jumpbox. If you did not change the default password, the password id `admin`:
 
 ```
 ssh root@localhost -p 2222

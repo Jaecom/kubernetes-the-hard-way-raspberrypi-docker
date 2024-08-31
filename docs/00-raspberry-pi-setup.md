@@ -13,8 +13,13 @@ ssh username@raspberry-pi-ip-address -p 22
 Disable swap in your raspberry pi.
 
 ```
-swapon --show
-swapoff -a
+sudo swapon --show
+sudo swapoff -a
+```
+
+Check the pi's memory usage
+
+```
 free -h
 ```
 
@@ -28,15 +33,26 @@ Swap:             0B          0B          0B
 
 ## Include memory in cgroup
 
+Install the `cgroup-tools`
+
 ```
 apt install cgroup-tools
+```
+
+Edit the `cmdLine.txt` file and reboot:
+
+```
 sudo nano /boot/firmware/cmdline.txt
 
-#append at the end of line
+#append at the end of line with a space
 cgroup_enable=memory cgroup_memory=1
 
 sudo reboot
+```
 
+Check the cgroup of your pi:
+
+```
 lscgroup
 ```
 

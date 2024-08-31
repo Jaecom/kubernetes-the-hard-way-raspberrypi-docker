@@ -96,10 +96,10 @@ kubectl cluster-info \
 Kubernetes control plane is running at https://127.0.0.1:6443
 ```
 
-Check the logs for any errors:
+Check the status for any errors:
 
 ```
-systemctl logs kube-apiserver kube-controller-manager kube-scheduler
+systemctl status kube-apiserver kube-controller-manager kube-scheduler
 ```
 
 ## RBAC for Kubelet Authorization
@@ -111,15 +111,24 @@ kubectl apply -f kube-apiserver-to-kubelet.yaml \
   --kubeconfig admin.kubeconfig
 ```
 
-Check the logs of `kube-apiserver` for any errors:
+Restart the controller services to apply the cluster role permission
 
 ```
-systemctl kube-apiserver
+  systemctl daemon-reload
+
+  systemctl restart kube-apiserver \
+    kube-controller-manager kube-scheduler
+```
+
+Check the staus of `kube-apiserver` for any errors:
+
+```
+systemctl status kube-apiserver
 ```
 
 ### Verification
 
-In your jumpbox machine, run the following commands to test if the kubernetes control plane is up and reachable:
+In your `jumpbox` machine, run the following commands to test if the kubernetes control plane is up and reachable:
 
 ```
 curl -k --cacert ca.crt https://server.kubernetes.local:6443/version

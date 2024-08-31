@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-Copy Kubernetes binaries and systemd unit files to each worker instance:
+From your `jumpbox` container, copy Kubernetes binaries and systemd unit files to each worker instance:
 
 ```
 for host in node-0 node-1; do
@@ -42,7 +42,7 @@ done
 #     configs/kubelet-config.yaml is removed
 ```
 
-The commands in this lab must be run on each worker instance: node-0, node-1. Login to the worker instance using the ssh command. Example:
+The commands in this lab must be run on each worker instance: `node-0`, `node-1`. Login to the worker instance using the ssh command. Example:
 
 ```
 ssh root@node-0
@@ -67,7 +67,7 @@ Swap should already be disabled from your host raspberry pi machine. Check with 
 swapon --show
 ```
 
-You should see nothing outputed in the terminal. If something is outputted, you need to diable swap in your host raspberry pi and restart your docker containers.
+You should see nothing outputed in the terminal. If something is outputted, you need to diable swap in your host raspberry pi using the [00-raspberry-pi-setup](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/00-raspberry-pi-setup.md) guide and restart your docker containers.
 
 ### Create the installation directories
 
@@ -127,10 +127,10 @@ mv 10-bridge.conf 99-loopback.conf /etc/cni/net.d/
 }
 ```
 
-Check the logs as well for any errors:
+Check the status of `containerd`, `kubelet`, and `kube-proxy` for any errors:
 
 ```
-  systemctl logs containerd kubelet kube-proxy
+  systemctl status containerd kubelet kube-proxy
 ```
 
 Also check kernal logs for any errors regarding the file system:

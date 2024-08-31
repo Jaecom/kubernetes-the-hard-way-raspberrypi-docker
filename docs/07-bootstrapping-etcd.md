@@ -59,10 +59,10 @@ etcdctl member list
 6702b0a34e2cfd39, started, controller, http://127.0.0.1:2380, http://127.0.0.1:2379, false
 ```
 
-View the logs of etcd server. Look out for any errors and warnings:
+View the status of etcd server. Look out for any errors and warnings:
 
 ```
-systemctl logs etcd
+systemctl status etcd
 ```
 
 Next: [Setting Up Kubernetes Controllers](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/08-bootstrapping-kubernetes-controllers.md)

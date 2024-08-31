@@ -1,7 +1,7 @@
 # Provisioning a CA and Generating TLS Certificates
 
 > [!NOTE]
-> You can follow the steps without any changes to the code in kelseyhightower's official guide: [04-certificate-authority](https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/04-certificate-authority.md). I added the shortened version of the code below for convenience.
+> In this section, you can follow the steps without any changes in kelseyhightower's official guide: [04-certificate-authority](https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/04-certificate-authority.md). I added the shortened version of the code below for convenience.
 
 ## Certificate Authority:
 

@@ -4,53 +4,25 @@ We will first set up your raspberry pi to run the 4 base containers required: `j
 
 ## Create base image
 
-Create a debian-bookworm-ssh dockerfile to create the base image the containers are going to run on. It will have ssh enabled by default:
+In you desired directory, copy the [debian-bookworm-ssh](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/debian-bookworm-ssh) dockerfile to create the base image the containers are going to run on. It will have ssh enabled by default.
+
+Çreate the debian-bookworm-ssh dockerfile:
 
 ```
 vim debian-bookworm-ssh
 ```
 
-```
-# Use the Debian Bookworm base image
-FROM debian:bookworm
-
-# Install necessary packages including systemd and OpenSSH server
-RUN apt-get update && \
-    apt-get install -y systemd systemd-sysv openssh-server && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
-# Create necessary directory for the SSH daemon to run
-RUN mkdir -p /var/run/sshd
-
-# Set root password (replace 'admin' with a password)
-RUN echo 'root:admin' | chpasswd
-
-# Allow root login (optional and not recommended for production)
-RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
-
-# SSH login fix. Otherwise user is kicked off after login
-RUN sed -i 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' /etc/pam.d/sshd
-
-# Enable SSH service
-RUN systemctl enable ssh
-
-# Expose SSH port
-EXPOSE 22
-
-# Use systemd as the init system
-CMD ["/lib/systemd/systemd"]
-```
+After copy and pasting the contents from [debian-bookworm-ssh](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/debian-bookworm-ssh), build the image:
 
 ```
 sudo docker build -t debian-bookworm-ssh -f debian-bookworm-ssh .
 ```
 
+You should be able to see your image successfully built.
+
 ```
 sudo docker image ls
 ```
-
-You should be able to see your image successfully built.
 
 ```
 REPOSITORY            TAG       IMAGE ID       CREATED        SIZE
@@ -61,7 +33,7 @@ debian-bookworm-ssh   latest    366c550a91c4   1 minute ago   208MB
 
 ## Run the containers
 
-Run the jumpbox container and server containers.
+Run the `jumpbox` container and `server` containers.
 
 ```
 # Run jumpbox container
@@ -81,7 +53,7 @@ sudo docker run \
 debian-bookworm-ssh
 ```
 
-Run the node containers. Node containers requires a volume mount for the `containerd` and `kubelet` directories. This is to prevent nested file overlays which will cause an error if not mounted. You can change the mount to be somewhere else by changing the `/mnt/node-0/containerd` and `/mnt/node-0/kubelet` paths.
+Run the `node-0` and `node-1` containers. Node containers requires a volume mount for the `containerd` and `kubelet` directories. This is to prevent nested file overlays which will cause an error if not mounted. You can change the mount to be somewhere else by changing the `/mnt/node-0/containerd` and `/mnt/node-0/kubelet` paths.
 
 ```
 # Run node-0 container

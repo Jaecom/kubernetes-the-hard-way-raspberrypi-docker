@@ -36,4 +36,9 @@ resources:
       - identity: {}
 ```
 
+Copy the `encryption-config.yaml` encryption config file to the `server` instance:
+```
+scp encryption-config.yaml root@server:~/
+```
+
 Next: [Bootstrapping etcd](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/07-bootstrapping-etcd.md)

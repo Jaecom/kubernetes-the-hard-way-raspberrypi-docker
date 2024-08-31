@@ -1,7 +1,7 @@
 # Generating Kubernetes Configuration Files for Authentication
 
 > [!NOTE]
-> You can follow the steps without any changes to the code in kelseyhightower's official guide: [05-kubernetes-configuration-files.md](https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/05-kubernetes-configuration-files.md). I added the shortened version of the code below for convenience.
+> In this section, you can follow the steps without any changes in kelseyhightower's official guide: [05-kubernetes-configuration-files.md](https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/05-kubernetes-configuration-files.md). I added the shortened version of the code below for convenience.
 
 ## Client Authentication Configs
 
@@ -9,9 +9,9 @@
 
 Generate kubelet, kube-proxy, kube-controller, kube-scheduler, and admin kubernetes configuration files
 
-```
+Generate kubeconfig files for worker nodes `node-0` and `node-1`:
 
-# Generate kubeconfig files for worker nodes node-0 and node-1
+```
 for host in node-0 node-1; do
   kubectl config set-cluster kubernetes-the-hard-way \
     --certificate-authority=ca.crt \
@@ -33,7 +33,11 @@ for host in node-0 node-1; do
   kubectl config use-context default \
     --kubeconfig=${host}.kubeconfig
 done
+```
 
+Generate kube-proxy, kube-controller, kube-scheduler, and admin kubernetes configuration files:
+
+```
 # Generate kubeconfig file for kube-proxy
 {
   kubectl config set-cluster kubernetes-the-hard-way \
@@ -129,7 +133,7 @@ done
 
 ## Distribute the Kubernetes Configuration Files
 
-Copy the `kubelet` and `kube-proxy` kubeconfig files to the node-0 instance:
+Copy the `kubelet` and `kube-proxy` kubeconfig files to the `node-0` and `node-1` instances:
 
 ```
 for host in node-0 node-1; do
@@ -143,7 +147,7 @@ for host in node-0 node-1; do
 done
 ```
 
-Copy the `kube-controller-manager` and `kube-scheduler` kubeconfig files to the controller instance:
+Copy the `kube-controller-manager` and `kube-scheduler` kubeconfig files to the `server` instance:
 
 ```
 scp admin.kubeconfig \
