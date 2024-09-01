@@ -2,7 +2,7 @@
 
 We will first do some configurations on your raspberry pi to prevent errors from happening later in this guide.
 
-## Ssh into your raspberry pi
+## SSH into your raspberry pi
 
 ```
 ssh username@raspberry-pi-ip-address -p 22
@@ -36,7 +36,7 @@ Swap:             0B          0B          0B
 Install the `cgroup-tools`
 
 ```
-apt install cgroup-tools
+sudo apt install cgroup-tools
 ```
 
 Edit the `cmdLine.txt` file and reboot:

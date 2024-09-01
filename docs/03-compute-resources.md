@@ -28,7 +28,7 @@ cd kubernetes-the-hard-way
 vim ca.conf
 ```
 
-Revised ca.conf based on ip addresses of docker containers. The revised sections are listed below with a #. You can find the full file here: [ca.conf]("https://github/Jaecom/kubernetes-the-hard-way-raspberrypi-docker).
+Revised ca.conf based on ip addresses of docker containers. The revised sections are listed below with a #. You can find the full file here: [ca.conf](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/ca.conf).
 
 ```
 ...
@@ -112,6 +112,10 @@ DNS.6 = api-server.kubernetes.local
 ## Machines.txt
 
 Create `machines.txt`. Replace the ip addresses in the beginning with the appropriate ip addresses of your docker containers.
+
+```
+vim machines.txt
+```
 
 ```
 172.17.0.3 server.kubernetes.local server

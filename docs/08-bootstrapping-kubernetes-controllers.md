@@ -102,6 +102,8 @@ Check the status for any errors:
 systemctl status kube-apiserver kube-controller-manager kube-scheduler
 ```
 
+You should see some errors related to cluter role permissions. We will fix that in the next section.
+
 ## RBAC for Kubelet Authorization
 
 Create the `system:kube-apiserver-to-kubelet` ClusterRole with permissions to access the Kubelet API and perform most common tasks associated with managing pods:
@@ -123,7 +125,7 @@ Restart the controller services to apply the cluster role permission
 Check the staus of `kube-apiserver` for any errors:
 
 ```
-systemctl status kube-apiserver
+systemctl status kube-apiserver kube-controller-manager kube-scheduler
 ```
 
 ### Verification

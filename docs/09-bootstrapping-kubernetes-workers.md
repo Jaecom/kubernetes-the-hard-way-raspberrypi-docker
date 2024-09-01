@@ -133,6 +133,8 @@ Check the status of `containerd`, `kubelet`, and `kube-proxy` for any errors:
   systemctl status containerd kubelet kube-proxy
 ```
 
+You may need to wait for a few seconds for the kubelet service to be fully operational.
+
 Also check kernal logs for any errors regarding the file system:
 
 ```

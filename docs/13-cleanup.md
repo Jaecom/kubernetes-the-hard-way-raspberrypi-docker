@@ -10,5 +10,5 @@ sudo docker remove jumpbox server node-0 node-1
 ### Delete the /mnt directory files
 
 ```
-rm -rf /mnt
+sudo rm -rf /mnt
 ```

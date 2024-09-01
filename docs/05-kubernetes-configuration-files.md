@@ -3,8 +3,6 @@
 > [!NOTE]
 > In this section, you can follow the steps without any changes in kelseyhightower's official guide: [05-kubernetes-configuration-files.md](https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/05-kubernetes-configuration-files.md). I added the shortened version of the code below for convenience.
 
-## Client Authentication Configs
-
 ## Generating Kubernetes Configuration Files
 
 Generate kubelet, kube-proxy, kube-controller, kube-scheduler, and admin kubernetes configuration files

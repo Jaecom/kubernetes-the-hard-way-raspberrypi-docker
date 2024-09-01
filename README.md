@@ -18,5 +18,5 @@ This tutorial uses 4 docker containers in a linux based machine. In this case, i
 - [09 - Setting Up Worker Nodes](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/09-bootstrapping-kubernetes-workers.md)
 - [10 - Setting Up Kubectl](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/10-configuring-kubectl.md)
 - [11 - Configuring Pod Networks](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/11-pod-network-routes.md)
-- [12 - Testing](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/12-smoke-test.md)
-- [13 - Cleanup](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/13-cleanup.md)
+- [12 - Smoke Test](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/12-smoke-test.md)
+- [13 - Cleaning Up](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/13-cleanup.md)

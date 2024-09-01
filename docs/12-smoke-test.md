@@ -5,14 +5,29 @@
 
 ## Data Encryption
 
-```
-kubectl create secret generic kubernetes-the-hard-way \
-  --from-literal="mykey=mydata"
-```
+The following guide will be run in your `jumpbox` container.
+
+Install `bsdmainutils` package in your `server` container:
 
 ```
+ssh root@server 'apt update && apt install -y bsdmainutils'
+```
+
+Create a generic secret:
+
+```
+kubectl create secret generic kubernetes-the-hard-way \
+ --from-literal="mykey=mydata"
+
+```
+
+Print a hexdump of the kubernetes-the-hard-way secret stored in etcd:
+
+```
+
 ssh root@server \
-    'etcdctl get /registry/secrets/default/kubernetes-the-hard-way | hexdump -C'
+ 'etcdctl get /registry/secrets/default/kubernetes-the-hard-way | hexdump -C'
+
 ```
 
 ```
@@ -20,24 +35,24 @@ ssh root@server \
 00000010  73 2f 64 65 66 61 75 6c  74 2f 6b 75 62 65 72 6e  |s/default/kubern|
 00000020  65 74 65 73 2d 74 68 65  2d 68 61 72 64 2d 77 61  |etes-the-hard-wa|
 00000030  79 0a 6b 38 73 3a 65 6e  63 3a 61 65 73 63 62 63  |y.k8s:enc:aescbc|
-00000040  3a 76 31 3a 6b 65 79 31  3a 9b 79 a5 b9 49 a2 77  |:v1:key1:.y..I.w|
-00000050  c0 6a c9 12 7c b4 c7 c4  64 41 37 97 4a 83 a9 c1  |.j..|...dA7.J...|
-00000060  4f 14 ae 73 ab b8 38 26  11 14 0a 40 b8 f3 0e 0a  |O..s..8&...@....|
-00000070  f5 a7 a2 2c b6 35 b1 83  22 15 aa d0 dd 25 11 3e  |...,.5.."....%.>|
-00000080  c4 e9 69 1c 10 7a 9d f7  dc 22 28 89 2c 83 dd 0b  |..i..z..."(.,...|
-00000090  a4 5f 3a 93 0f ff 1f f8  bc 97 43 0e e5 05 5d f9  |._:.......C...].|
-000000a0  ef 88 02 80 49 81 f1 58  b0 48 39 19 14 e1 b1 34  |....I..X.H9....4|
-000000b0  f6 b0 9b 0a 9c 53 27 2b  23 b9 e6 52 b4 96 81 70  |.....S'+#..R...p|
-000000c0  a7 b6 7b 4f 44 d4 9c 07  51 a3 1b 22 96 4c 24 6c  |..{OD...Q..".L$l|
-000000d0  44 6c db 53 f5 31 e6 3f  15 7b 4c 23 06 c1 37 73  |Dl.S.1.?.{L#..7s|
-000000e0  e1 97 8e 4e 1a 2e 2c 1a  da 85 c3 ff 42 92 d0 f1  |...N..,.....B...|
-000000f0  87 b8 39 89 e8 46 2e b3  56 68 41 b8 1e 29 3d ba  |..9..F..VhA..)=.|
-00000100  dd d8 27 4c 7f d5 fe 97  3c a3 92 e9 3d ae 47 ee  |..'L....<...=.G.|
-00000110  24 6a 0b 7c ac b8 28 e6  25 a6 ce 04 80 ee c2 eb  |$j.|..(.%.......|
-00000120  4c 86 fa 70 66 13 63 59  03 c2 70 57 8b fb a1 d6  |L..pf.cY..pW....|
-00000130  f2 58 08 84 43 f3 70 7f  ad d8 30 63 3e ef ff b6  |.X..C.p...0c>...|
-00000140  b2 06 c3 45 c5 d8 89 d3  47 4a 72 ca 20 9b cf b5  |...E....GJr. ...|
-00000150  4b 3d 6d b4 58 ae 42 4b  7f 0a                    |K=m.X.BK..|
+00000040  3a 76 31 3a 6b 65 79 31  3a 67 0e 3d 21 19 94 e1  |:v1:key1:g.=!...|
+00000050  56 92 3f ed 27 8a 1e ee  78 4e 3e 61 a5 40 6a 3b  |V.?.'...xN>a.@j;|
+00000060  71 62 0d b2 50 76 69 0c  f8 4e d6 b5 5c 24 11 c3  |qb..Pvi..N..\$..|
+00000070  e5 3c 16 ae 42 5f 00 9e  44 0d cf fd bb b0 e0 14  |.<..B_..D.......|
+00000080  d6 a0 a9 0d 5c 8d 09 5e  78 5c a8 ae 96 7a ca 42  |....\..^x\...z.B|
+00000090  19 b3 3e 67 d6 74 3a 1b  4a 35 40 94 36 cc 2b 81  |..>g.t:.J5@.6.+.|
+000000a0  e6 48 61 ac 2e 78 c6 8b  df b7 66 a4 d6 20 cc 88  |.Ha..x....f.. ..|
+000000b0  25 db 00 6b b5 59 68 e4  6d 55 0f 77 2a 9c 9c bf  |%..k.Yh.mU.w*...|
+000000c0  92 09 d4 45 c7 df 87 1b  a8 92 2f af 9a 3c 6b 9f  |...E....../..<k.|
+000000d0  5e 0a 94 32 c3 53 07 37  31 93 3a 0d be 9c dc 05  |^..2.S.71.:.....|
+000000e0  6b 3b a0 50 f6 9b c5 60  5a 7c 34 b4 52 01 d6 b3  |k;.P...`Z|4.R...|
+000000f0  f1 7b c9 82 5b ee 71 fc  0b 16 d8 b9 6b 42 53 27  |.{..[.q.....kBS'|
+00000100  e1 96 d4 e9 6d b4 6e d0  65 75 3f d3 d6 66 4d 24  |....m.n.eu?..fM$|
+00000110  82 9f dc 3c d3 fb 2c eb  38 4a 9e c7 01 6e bb 69  |...<..,.8J...n.i|
+00000120  db 27 2e ef 72 0c 71 b5  4f 1b a0 37 64 60 b7 d8  |.'..r.q.O..7d`..|
+00000130  dc 58 e5 34 57 fa 8d 48  a1 1e 87 43 94 f7 54 42  |.X.4W..H...C..TB|
+00000140  14 6c 0b 0e 13 b1 81 bc  cf 9a ac 3b bd 8d 65 41  |.l.........;..eA|
+00000150  c6 90 11 46 34 0d 79 c8  e6 0a                    |...F4.y...|
 0000015a
 ```
 
@@ -47,7 +62,7 @@ Create a deployment for the nginx web server:
 
 ```
 kubectl create deployment nginx \
-  --image=nginx:latest
+ --image=nginx:latest
 ```
 
 List the pod created by the nginx deployment:
@@ -57,8 +72,8 @@ kubectl get pods -l app=nginx
 ```
 
 ```
-NAME                     READY   STATUS    RESTARTS   AGE
-nginx-56fcf95486-c8dnx   1/1     Running   0          8s
+NAME READY STATUS RESTARTS AGE
+nginx-56fcf95486-c8dnx 1/1 Running 0 8s
 ```
 
 ## Port Forwarding
@@ -67,7 +82,7 @@ Retrieve the full name of the nginx pod:
 
 ```
 POD_NAME=$(kubectl get pods -l app=nginx \
-  -o jsonpath="{.items[0].metadata.name}")
+ -o jsonpath="{.items[0].metadata.name}")
 ```
 
 Forward port 8080 on your local machine to port 80 of the nginx pod:
@@ -128,14 +143,14 @@ Expose the nginx deployment using a NodePort service:
 
 ```
 kubectl expose deployment nginx \
-  --port 80 --type NodePort
+ --port 80 --type NodePort
 ```
 
 Retrieve the node port assigned to the nginx service:
 
 ```
 NODE_PORT=$(kubectl get svc nginx \
-  --output=jsonpath='{range .spec.ports[0]}{.nodePort}')
+ --output=jsonpath='{range .spec.ports[0]}{.nodePort}')
 ```
 
 Make an HTTP request using the IP address and the nginx node port:
