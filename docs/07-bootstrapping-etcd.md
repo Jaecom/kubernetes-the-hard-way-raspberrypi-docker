@@ -6,10 +6,24 @@ Copy `etcd` binaries and systemd unit files to the `server` instance:
 
 ```
 scp \
-  downloads/etcd-v3.4.27-linux-arm64.tar.gz \
+  downloads-arm/etcd-v3.4.34-linux-arm64.tar.gz \
   units/etcd.service \
   root@server:~/
 ```
+
+<details>
+<summary><code>amd</code></summary>
+
+```
+scp \
+  downloads-amd/etcd-v3.4.34-linux-amd64.tar.gz \
+  units/etcd.service \
+  root@server:~/
+```
+
+</details>
+
+<br/>
 
 The commands in this lab must be run on the server machine. Login to the server machine using the ssh command. Example:
 
@@ -23,8 +37,8 @@ ssh root@server
 
 ```
 {
-  tar -xvf etcd-v3.4.27-linux-arm64.tar.gz
-  mv etcd-v3.4.27-linux-arm64/etcd* /usr/local/bin/
+  tar -xvf etcd-v3.4.34-linux-arm64.tar.gz
+  mv etcd-v3.4.34-linux-arm64/etcd* /usr/local/bin/
 }
 
 {
@@ -36,6 +50,29 @@ ssh root@server
 
 mv etcd.service /etc/systemd/system/
 ```
+
+<details>
+<summary><code>amd</code></summary>
+
+```
+{
+  tar -xvf etcd-v3.4.34-linux-amd64.tar.gz
+  mv etcd-v3.4.34-linux-amd64/etcd* /usr/local/bin/
+}
+
+{
+  mkdir -p /etc/etcd /var/lib/etcd
+  chmod 700 /var/lib/etcd
+  cp ca.crt kube-api-server.key kube-api-server.crt \
+    /etc/etcd/
+}
+
+mv etcd.service /etc/systemd/system/
+```
+
+</details>
+
+<br/>
 
 ### Start the etcd Server
 

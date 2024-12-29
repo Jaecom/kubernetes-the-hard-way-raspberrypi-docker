@@ -10,6 +10,7 @@ This tutorial uses 4 docker containers in a linux based machine. In this case, i
 - [01 - Running Docker Containers](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/01-docker-container-setup.md)
 - [02 - Jumpbox](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/02-jumpbox.md)
 - [03 - Provisioning Resources](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/03-compute-resources.md)
+- [03 - Provisioning Resources (SSH Config)](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/03-compute-resources-ssh-config.md)
 - [04 - Generating Certificates](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/04-certificate-authority.md)
 - [05 - Setting up Kubernetes Config](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/05-kubernetes-configuration-files.md)
 - [06 - Setting Up Encryption](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/06-data-encryption-keys.md)

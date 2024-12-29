@@ -15,12 +15,12 @@ curl -k --cacert ca.crt \
 ```
 {
   "major": "1",
-  "minor": "28",
-  "gitVersion": "v1.28.3",
-  "gitCommit": "a8a1abc25cad87333840cd7d54be2efaf31a3177",
+  "minor": "32",
+  "gitVersion": "v1.32.0",
+  "gitCommit": "70d3cc986aa8221cd1dfb1121852688902d3bf53",
   "gitTreeState": "clean",
-  "buildDate": "2023-10-18T11:33:18Z",
-  "goVersion": "go1.20.10",
+  "buildDate": "2024-12-11T17:59:15Z",
+  "goVersion": "go1.23.3",
   "compiler": "gc",
   "platform": "linux/arm64"
 }
@@ -56,9 +56,9 @@ kubectl version
 ```
 
 ```
-Client Version: v1.28.3
-Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3
-Server Version: v1.28.3
+Client Version: v1.32.0
+Kustomize Version: v5.5.0
+Server Version: v1.32.0
 ```
 
 List the nodes in the remote Kubernetes cluster:
@@ -69,8 +69,8 @@ kubectl get nodes
 
 ```
 NAME     STATUS   ROLES    AGE     VERSION
-node-0   Ready    <none>   5m38s   v1.28.3
-node-1   Ready    <none>   3m32s   v1.28.3
+node-0   Ready    <none>   5m38s   v1.32.0
+node-1   Ready    <none>   3m32s   v1.32.0
 ```
 
 Next: [Configuring Pod Networks](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/11-pod-network-routes.md)

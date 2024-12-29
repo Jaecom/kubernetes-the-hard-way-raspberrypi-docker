@@ -6,10 +6,10 @@ In your `jumpbox` instance, copy Kubernetes binaries and systemd unit files to t
 
 ```
 scp \
-  downloads/kube-apiserver \
-  downloads/kube-controller-manager \
-  downloads/kube-scheduler \
-  downloads/kubectl \
+  downloads-arm/kube-apiserver \
+  downloads-arm/kube-controller-manager \
+  downloads-arm/kube-scheduler \
+  downloads-arm/kubectl \
   units/kube-apiserver.service \
   units/kube-controller-manager.service \
   units/kube-scheduler.service \
@@ -17,6 +17,27 @@ scp \
   configs/kube-apiserver-to-kubelet.yaml \
   root@server:~/
 ```
+
+<details>
+<summary><code>amd</code></summary>
+
+```
+scp \
+  downloads-amd/kube-apiserver \
+  downloads-amd/kube-controller-manager \
+  downloads-amd/kube-scheduler \
+  downloads-amd/kubectl \
+  units/kube-apiserver.service \
+  units/kube-controller-manager.service \
+  units/kube-scheduler.service \
+  configs/kube-scheduler.yaml \
+  configs/kube-apiserver-to-kubelet.yaml \
+  root@server:~/
+```
+
+</details>
+
+<br/>
 
 The commands in this lab must be run on the controller instance: server. Login to the controller instance using the ssh command. Example:
 
@@ -139,12 +160,12 @@ curl -k --cacert ca.crt https://server.kubernetes.local:6443/version
 ```
 {
   "major": "1",
-  "minor": "28",
-  "gitVersion": "v1.28.3",
-  "gitCommit": "a8a1abc25cad87333840cd7d54be2efaf31a3177",
+  "minor": "32",
+  "gitVersion": "v1.32.0",
+  "gitCommit": "70d3cc986aa8221cd1dfb1121852688902d3bf53",
   "gitTreeState": "clean",
-  "buildDate": "2023-10-18T11:33:18Z",
-  "goVersion": "go1.20.10",
+  "buildDate": "2024-12-11T17:59:15Z",
+  "goVersion": "go1.23.3",
   "compiler": "gc",
   "platform": "linux/arm64"
 }

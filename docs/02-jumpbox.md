@@ -20,7 +20,7 @@ apt -y install wget curl vim openssl git
 
 ```
 git clone --depth 1 \
-  https://github.com/kelseyhightower/kubernetes-the-hard-way.git
+  https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker.git
 ```
 
 Change into the `kubernetes-the-hard-way directory`:
@@ -41,41 +41,58 @@ pwd
 
 ### Download Binaries
 
-From the `kubernetes-the-hard-way` directory, create a `downloads` directory:
+From the `kubernetes-the-hard-way` directory, create a `downloads` directory depending on the system architecture:
 
 ```
-mkdir downloads
+mkdir downloads-arm
+mkdir downloads-amd       #For amd
 ```
 
-Download the binaries listed in the `downloads.txt` file using the `wget` command:
+Download the binaries listed in the `downloads-arm.txt` or `downloads-amd.txt` file using the `wget` command:
 
 ```
 wget -q --show-progress \
   --https-only \
   --timestamping \
-  -P downloads \
-  -i downloads.txt
+  -P downloads-arm \
+  -i downloads-arm.txt
 ```
+
+<details>
+<summary><code>amd</code></summary>
+
+```
+wget -q --show-progress \
+  --https-only \
+  --timestamping \
+  -P downloads-amd \
+  -i downloads-amd.txt
+```
+
+</details>
+
+<br/>
 
 After the download is complete, check your downloads:
 
 ```
-ls -loh downloads
+ls -loh downloads-arm
+ls -loh downloads-amd       # For amd
 ```
 
 ```
-total 584M
--rw-r--r-- 1 root  41M May  9 13:35 cni-plugins-linux-arm64-v1.3.0.tgz
--rw-r--r-- 1 root  34M Oct 26 15:21 containerd-1.7.8-linux-arm64.tar.gz
--rw-r--r-- 1 root  22M Aug 14 00:19 crictl-v1.28.0-linux-arm.tar.gz
--rw-r--r-- 1 root  15M Jul 11 02:30 etcd-v3.4.27-linux-arm64.tar.gz
--rw-r--r-- 1 root 111M Oct 18 07:34 kube-apiserver
--rw-r--r-- 1 root 107M Oct 18 07:34 kube-controller-manager
--rw-r--r-- 1 root  51M Oct 18 07:34 kube-proxy
--rw-r--r-- 1 root  52M Oct 18 07:34 kube-scheduler
--rw-r--r-- 1 root  46M Oct 18 07:34 kubectl
--rw-r--r-- 1 root 101M Oct 18 07:34 kubelet
--rw-r--r-- 1 root 9.6M Aug 10 18:57 runc.arm64
+total 536M
+-rw-r--r-- 1 root 48M Oct 15 09:37 cni-plugins-linux-arm64-v1.6.0.tgz
+-rw-r--r-- 1 root 32M Nov  5 19:37 containerd-2.0.0-linux-arm64.tar.gz
+-rw-r--r-- 1 root 17M Dec  9 09:16 crictl-v1.32.0-linux-arm64.tar.gz
+-rw-r--r-- 1 root 16M Sep 11 18:28 etcd-v3.4.34-linux-arm64.tar.gz
+-rw-r--r-- 1 root 87M Dec 11 21:12 kube-apiserver
+-rw-r--r-- 1 root 80M Dec 11 21:12 kube-controller-manager
+-rw-r--r-- 1 root 63M Dec 11 21:12 kube-proxy
+-rw-r--r-- 1 root 62M Dec 11 21:12 kube-scheduler
+-rw-r--r-- 1 root 54M Dec 11 21:12 kubectl
+-rw-r--r-- 1 root 72M Dec 11 21:12 kubelet
+-rw-r--r-- 1 root 11M Nov  1 22:23 runc.arm64
 ```
 
 ### Install kubectl
@@ -84,18 +101,34 @@ Use the chmod command to make the kubectl binary executable and move it to the /
 
 ```
 {
-  chmod +x downloads/kubectl
+  chmod +x downloads-arm/kubectl
   cp downloads/kubectl /usr/local/bin/
 }
 ```
+
+<details>
+<summary><code>amd</code></summary>
+
+```
+{
+  chmod +x downloads-amd/kubectl
+  cp downloads/kubectl /usr/local/bin/
+}
+```
+
+</details>
+
+<br/>
 
 ```
 kubectl version --client
 ```
 
 ```
-Client Version: v1.28.3
-Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3
+Client Version: v1.32.0
+Kustomize Version: v5.5.0
 ```
 
-Next: [Provisioning Resources](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/03-compute-resources.md)
+Next: [Provisioning Resources - Default](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/03-compute-resources.md)
+
+Next: [Provisioning Resources - Using SSH Config](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/03-compute-resources-ssh-config.md)

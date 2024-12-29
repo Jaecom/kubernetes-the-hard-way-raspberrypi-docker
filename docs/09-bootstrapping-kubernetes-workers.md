@@ -23,13 +23,13 @@ Copy the downloaded files to `node-0` and `node-1` instances. Please use the com
 ```
 for host in node-0 node-1; do
   scp \
-    downloads/runc.arm64 \
-    downloads/crictl-v1.28.0-linux-arm.tar.gz \
-    downloads/cni-plugins-linux-arm64-v1.3.0.tgz \
-    downloads/containerd-1.7.8-linux-arm64.tar.gz \
-    downloads/kubectl \
-    downloads/kubelet \
-    downloads/kube-proxy \
+    downloads-arm/runc.arm64 \
+    downloads-arm/crictl-v1.32.0-linux-arm64.tar.gz \
+    downloads-arm/cni-plugins-linux-arm64-v1.6.0.tgz \
+    downloads-arm/containerd-2.0.0-linux-arm64.tar.gz \
+    downloads-arm/kubectl \
+    downloads-arm/kubelet \
+    downloads-arm/kube-proxy \
     configs/99-loopback.conf \
     configs/containerd-config.toml \
     configs/kube-proxy-config.yaml \
@@ -41,6 +41,35 @@ done
 
 #     configs/kubelet-config.yaml is removed
 ```
+
+<details>
+<summary><code>amd</code></summary>
+
+```
+for host in node-0 node-1; do
+  scp \
+    downloads-amd/runc.amd64 \
+    downloads-amd/crictl-v1.32.0-linux-amd64.tar.gz \
+    downloads-amd/cni-plugins-linux-amd64-v1.6.0.tgz \
+    downloads-amd/containerd-2.0.0-linux-amd64.tar.gz \
+    downloads-amd/kubectl \
+    downloads-amd/kubelet \
+    downloads-amd/kube-proxy \
+    configs/99-loopback.conf \
+    configs/containerd-config.toml \
+    configs/kube-proxy-config.yaml \
+    units/containerd.service \
+    units/kubelet.service \
+    units/kube-proxy.service \
+    root@$host:~/
+done
+
+#     configs/kubelet-config.yaml is removed
+```
+
+</details>
+
+<br/>
 
 The commands in this lab must be run on each worker instance: `node-0`, `node-1`. Login to the worker instance using the ssh command. Example:
 
@@ -82,15 +111,43 @@ mkdir -p \
 
 {
   mkdir -p containerd
-  tar -xvf crictl-v1.28.0-linux-arm.tar.gz
-  tar -xvf containerd-1.7.8-linux-arm64.tar.gz -C containerd
-  tar -xvf cni-plugins-linux-arm64-v1.3.0.tgz -C /opt/cni/bin/
+  tar -xvf crictl-v1.32.0-linux-arm64.tar.gz
+  tar -xvf containerd-2.0.0-linux-arm64.tar.gz -C containerd
+  tar -xvf cni-plugins-linux-arm64-v1.6.0.tgz -C /opt/cni/bin/
   mv runc.arm64 runc
   chmod +x crictl kubectl kube-proxy kubelet runc
   mv crictl kubectl kube-proxy kubelet runc /usr/local/bin/
   mv containerd/bin/* /bin/
 }
 ```
+
+<details>
+<summary><code>amd</code></summary>
+
+```
+mkdir -p \
+  /etc/cni/net.d \
+  /opt/cni/bin \
+  /var/lib/kubelet \
+  /var/lib/kube-proxy \
+  /var/lib/kubernetes \
+  /var/run/kubernetes
+
+{
+  mkdir -p containerd
+  tar -xvf crictl-v1.32.0-linux-amd64.tar.gz
+  tar -xvf containerd-2.0.0-linux-amd64.tar.gz -C containerd
+  tar -xvf cni-plugins-linux-amd64-v1.6.0.tgz -C /opt/cni/bin/
+  mv runc.amd64 runc
+  chmod +x crictl kubectl kube-proxy kubelet runc
+  mv crictl kubectl kube-proxy kubelet runc /usr/local/bin/
+  mv containerd/bin/* /bin/
+}
+```
+
+</details>
+
+<br/>
 
 ### Congfigure Services
 
