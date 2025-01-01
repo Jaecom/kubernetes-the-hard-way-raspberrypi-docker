@@ -24,7 +24,7 @@ ssh root@localhost -p 2222
 ```
 
 ```
-cd kubernetes-the-hard-way
+cd kubernetes-the-hard-way-raspberrypi-docker
 vim ca.conf
 ```
 

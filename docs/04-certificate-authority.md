@@ -5,7 +5,7 @@
 
 ## Certificate Authority:
 
-Inside the `kubernetes-the-hard-way` directory, run generate the configuration file, certificate, and private key.
+Inside the `kubernetes-the-hard-way-raspberrypi-docker` directory, run generate the configuration file, certificate, and private key.
 
 ```
 {

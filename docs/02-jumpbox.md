@@ -23,10 +23,10 @@ git clone --depth 1 \
   https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker.git
 ```
 
-Change into the `kubernetes-the-hard-way directory`:
+Change into the `kubernetes-the-hard-way-raspberrypi-docker` directory:
 
 ```
-cd kubernetes-the-hard-way
+cd kubernetes-the-hard-way-raspberrypi-docker
 ```
 
 This will be the working directory for the rest of the tutorial. If you ever get lost run the pwd command to verify you are in the right directory when running commands on the jumpbox:
@@ -36,12 +36,12 @@ pwd
 ```
 
 ```
-/root/kubernetes-the-hard-way
+/root/kubernetes-the-hard-way-raspberrypi-docker
 ```
 
 ### Download Binaries
 
-From the `kubernetes-the-hard-way` directory, create a `downloads` directory depending on the system architecture:
+From the `kubernetes-the-hard-way-raspberrypi-docker` directory, create a `downloads` directory depending on the system architecture:
 
 ```
 mkdir downloads-arm
@@ -102,7 +102,7 @@ Use the chmod command to make the kubectl binary executable and move it to the /
 ```
 {
   chmod +x downloads-arm/kubectl
-  cp downloads/kubectl /usr/local/bin/
+  cp downloads-arm/kubectl /usr/local/bin/
 }
 ```
 
@@ -112,7 +112,7 @@ Use the chmod command to make the kubectl binary executable and move it to the /
 ```
 {
   chmod +x downloads-amd/kubectl
-  cp downloads/kubectl /usr/local/bin/
+  cp downloads-amd/kubectl /usr/local/bin/
 }
 ```
 
