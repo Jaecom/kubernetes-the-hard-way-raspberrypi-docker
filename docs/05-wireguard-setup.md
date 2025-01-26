@@ -226,27 +226,23 @@ interface: wg0
   private key: (hidden)
   listening port: 51820
 
-# Jumpbox
-peer: 2I9u5kruJKnsqyEigq7oVDeu6svG8XrNFWoDMhH++ls=
-  endpoint: <Jumpbox IP>:52418
-  allowed ips: 10.0.0.2/32
-  latest handshake: 11 seconds ago
-  transfer: 963.05 MiB received, 14.63 MiB sent
-
-# Node-0
-peer: 7lEdXmpAJd6ObiZBogaBObbhu8UVwQTObXPWUMA+tnQ=
-  endpoint: <Node-0 IP>:40178
-  allowed ips: 10.0.1.1/32, 10.244.1.0/24
-  latest handshake: 29 seconds ago
-  transfer: 16.20 MiB received, 343.85 MiB sent
-
-# Node-1
 peer: 3XageH4zmDPUfzLDbzuPT+epMNYdOep21oEFvuar82M=
-  endpoint: <Node-1 IP>:47527
+  endpoint: 112.154.223.72:47527
   allowed ips: 10.0.2.1/32, 10.244.2.0/24
-  latest handshake: 55 seconds ago
-  transfer: 25.06 MiB received, 330.67 MiB sent
+  latest handshake: 22 seconds ago
+  transfer: 796 B received, 276 B sent
 
+peer: 7lEdXmpAJd6ObiZBogaBObbhu8UVwQTObXPWUMA+tnQ=
+  endpoint: 43.201.65.39:49594
+  allowed ips: 10.0.1.1/32, 10.244.1.0/24
+  latest handshake: 1 minute, 3 seconds ago
+  transfer: 796 B received, 276 B sent
+
+peer: 2I9u5kruJKnsqyEigq7oVDeu6svG8XrNFWoDMhH++ls=
+  endpoint: 3.36.40.57:36210
+  allowed ips: 10.0.0.2/32
+  latest handshake: 1 minute, 59 seconds ago
+  transfer: 308 B received, 92 B sent
 ```
 
 ## Enable IP Forwarding
@@ -254,7 +250,7 @@ peer: 3XageH4zmDPUfzLDbzuPT+epMNYdOep21oEFvuar82M=
 Enable IP Forwarding in the `server` container firewall rules:
 
 ```
-sudo nano /etc/sysctl.conf
+nano /etc/sysctl.conf
 ```
 
 Uncomment `net.ipv4.ip_forward = 1` part of the config file:
@@ -262,9 +258,7 @@ Uncomment `net.ipv4.ip_forward = 1` part of the config file:
 ```
 ...
 
-#net.ipv4.tcp_syncookies=1
-
-# Uncomment the next line
+# Uncomment the next line to enable packet forwarding for IPv4
 net.ipv4.ip_forward=1
 
 ...
@@ -273,7 +267,7 @@ net.ipv4.ip_forward=1
 Apply the changes
 
 ```
-sudo sysctl -p
+sysctl -p
 ```
 
 Add the following firegwall rule to forward ip:
@@ -285,6 +279,7 @@ iptables -A FORWARD -i wg0 -o wg0 -s 10.0.0.0/16 -d 10.0.0.0/16 -j ACCEPT
 Ensure firewall persist across reboots:
 
 ```
+apt update
 apt install netfilter-persistent
 netfilter-persistent save
 netfilter-persistent reload
