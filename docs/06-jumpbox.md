@@ -83,6 +83,19 @@ total 536M
 -rw-r--r-- 1 root 54M Dec 11 21:12 kubectl
 -rw-r--r-- 1 root 72M Dec 11 21:12 kubelet
 -rw-r--r-- 1 root 11M Nov  1 22:23 runc.arm64
+
+total 557M
+-rw-r--r-- 1 root 51M Oct 15 09:37 cni-plugins-linux-amd64-v1.6.0.tgz
+-rw-r--r-- 1 root 36M Nov  5 19:37 containerd-2.0.0-linux-amd64.tar.gz
+-rw-r--r-- 1 root 19M Dec  9 09:16 crictl-v1.32.0-linux-amd64.tar.gz
+-rw-r--r-- 1 root 17M Sep 11 18:28 etcd-v3.4.34-linux-amd64.tar.gz
+-rw-r--r-- 1 root 89M Dec 11 21:12 kube-apiserver
+-rw-r--r-- 1 root 82M Dec 11 21:12 kube-controller-manager
+-rw-r--r-- 1 root 64M Dec 11 21:12 kube-proxy
+-rw-r--r-- 1 root 63M Dec 11 21:12 kube-scheduler
+-rw-r--r-- 1 root 55M Dec 11 21:12 kubectl
+-rw-r--r-- 1 root 74M Dec 11 21:12 kubelet
+-rw-r--r-- 1 root 11M Nov  1 22:23 runc.amd64
 ```
 
 ### Install kubectl

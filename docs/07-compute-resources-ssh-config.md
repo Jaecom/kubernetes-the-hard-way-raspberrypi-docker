@@ -1,25 +1,16 @@
 # Provisioning Compute Resources
 
-### Configuring ca.conf
-
-Ssh into your `jumpbox` and edit the ca.conf file:
-
-```
-ssh root@localhost -p 2222
-```
-
-```
-cd kubernetes-the-hard-way-raspberrypi-docker
-vim ca.conf
-```
+This section should be done in your `jumpbox` contianer.
 
 ## Machines.txt
 
-Create `machines.txt`. Replace the ip addresses in the beginning with the appropriate ip addresses of your docker containers.
+Inside the `/kubernetes-the-hard-way-raspberrypi-docker directory`, create a `machines.txt` file.
 
 ```
 vim machines.txt
 ```
+
+The `machines.txt` file defines the IP address, FQDN (Fully Qualified Domain Name), hostname, and the Pod CIDR range for each Kubernetes cluster machine, specifying network and identification details.
 
 ```
 10.0.0.1 server.kubernetes.local server 10.244.0.0/24
@@ -43,7 +34,7 @@ Edit the `SSH` config file. You can input a different `IP` and `port` if using a
 Host server
   HostName 10.0.0.1 # IP Address of server
   User root
-  Port 22
+  Port 6001
 
 Host node-0
   HostName 10.0.1.1 # IP Address of node-0
@@ -57,7 +48,7 @@ Host node-1
 ```
 
 > [!Note]
-> The reason why we use `port 6001` for the `node-0` and `node-1` containers is because we used `--network host` when running the node containers. Since the docker containers will use the host's network stack, `port 22` is already taken so we specified `ssh` to be configured in the `6001 port` in `debian-bookworm-ssh`.
+> The reason why we use `port 6001` for the `node-0` and `node-1` containers is because we used `--network host` when running the node containers. Since the docker containers will use the host's network stack, `port 22` is already taken so we specified `ssh` to be configured in the `port 6001` in `debian-bookworm-ssh`. The `server` container also has ssh configured in `port 6001` since we used the same image.
 
 ### Generate and Destribute SSH Keys
 
