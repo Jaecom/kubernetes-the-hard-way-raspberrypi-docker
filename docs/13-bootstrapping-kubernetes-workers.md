@@ -60,6 +60,7 @@ The commands in this lab must be run on each worker instance: `node-0`, `node-1`
 
 ```
 ssh root@node-0
+ssh root@node-1
 ```
 
 ## Provisioning a Kubernetes Worker Node

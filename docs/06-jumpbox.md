@@ -1,8 +1,5 @@
 # Setup the jumpbox
 
-> [!NOTE]
-> In this section, you can follow the steps without any changes in kelseyhightower's official guide: [02-jumpbox.md](https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/02-jumpbox.md). I added the shortened version of the code below for convenience.
-
 Log in to the jumpbox. If you did not change the default password, the password id `admin`:
 
 ```
@@ -44,13 +41,21 @@ pwd
 From the `kubernetes-the-hard-way-raspberrypi-docker` directory, create a `downloads` directory depending on the system architecture:
 
 ```
+mkdir downloads-amd
 mkdir downloads-arm
-mkdir downloads-amd       #For amd
 ```
 
 Download the binaries listed in the `downloads-arm.txt` or `downloads-amd.txt` file using the `wget` command:
 
 ```
+# Download binaries for amd
+wget -q --show-progress \
+  --https-only \
+  --timestamping \
+  -P downloads-amd \
+  -i downloads-amd.txt
+
+# Download binaries for arm
 wget -q --show-progress \
   --https-only \
   --timestamping \
@@ -58,26 +63,11 @@ wget -q --show-progress \
   -i downloads-arm.txt
 ```
 
-<details>
-<summary><code>amd</code></summary>
-
-```
-wget -q --show-progress \
-  --https-only \
-  --timestamping \
-  -P downloads-amd \
-  -i downloads-amd.txt
-```
-
-</details>
-
-<br/>
-
 After the download is complete, check your downloads:
 
 ```
 ls -loh downloads-arm
-ls -loh downloads-amd       # For amd
+ls -loh downloads-amd
 ```
 
 ```
@@ -101,18 +91,18 @@ Use the chmod command to make the kubectl binary executable and move it to the /
 
 ```
 {
-  chmod +x downloads-arm/kubectl
-  cp downloads-arm/kubectl /usr/local/bin/
+  chmod +x downloads-amd/kubectl
+  cp downloads-amd/kubectl /usr/local/bin/
 }
 ```
 
 <details>
-<summary><code>amd</code></summary>
+<summary><code>arm</code></summary>
 
 ```
 {
-  chmod +x downloads-amd/kubectl
-  cp downloads-amd/kubectl /usr/local/bin/
+  chmod +x downloads-arm/kubectl
+  cp downloads-arm/kubectl /usr/local/bin/
 }
 ```
 

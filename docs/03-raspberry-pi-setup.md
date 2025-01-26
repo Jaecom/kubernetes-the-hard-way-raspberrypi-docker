@@ -71,4 +71,4 @@ cpuset,cpu,io,memory,pids:/dev-mqueue.mount
 
 You must have docker installed in your raspberry pi. In case of a debian machine, use the offical docs: [Install Docker Engine on Debian](https://docs.docker.com/engine/install/debian/)
 
-Next: [04 - Setting up Docker Containers](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/01-docker-container-setup.md)
+Next: [04 - Setting up Docker Containers](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/04-docker-container-setup.md)

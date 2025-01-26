@@ -16,6 +16,6 @@ This is a high level overview of the opened ports that should be accessible. We 
 
 To connect the 3 machines together, rather than use VPC, we will use a VPN with the `wireguard` package. Configuration will be guided step by step.
 
-More information about Wireguard can be found in the [WireGuard Docs](https://www.wireguard.com/)
+More information about WireGuard can be found in the [WireGuard Docs](https://www.wireguard.com/)
 
 Next: [02 - EC2 Setup](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/02-ec2-setup.md)

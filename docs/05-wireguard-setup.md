@@ -1,6 +1,6 @@
 # Wireguard VPN Setup
 
-If you have no background in Wireguard VPN, here is a good reference to start with: [Set Up a WireGuard VPN on Linux](https://medium.com/@jae.yoon7373/how-to-manually-configure-a-vpn-with-wireguard-with-linux-781f5f106f8b)
+If you have no background in WireGuard VPN, here is a good reference to start with: [Set Up a WireGuard VPN on Linux](https://medium.com/@jae.yoon7373/how-to-manually-configure-a-vpn-with-wireguard-with-linux-781f5f106f8b)
 
 This is a brief overview of the IP Addresses we are going to assign to each container:
 
@@ -206,12 +206,9 @@ Uncomment `net.ipv4.ip_forward = 1` part of the config file:
 ```
 ...
 
-# Uncomment the next line to enable TCP/IP SYN cookies
-# See http://lwn.net/Articles/277146/
-# Note: This may impact IPv6 TCP sessions too
 #net.ipv4.tcp_syncookies=1
 
-# Uncomment the next line to enable packet forwarding for IPv4
+# Uncomment the next line
 net.ipv4.ip_forward=1
 
 ...

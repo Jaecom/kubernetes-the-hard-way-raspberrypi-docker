@@ -57,7 +57,7 @@ Host node-1
 ```
 
 > [!Note]
-> The reason why we use `port 6001` for the `node-0` and `node-1` containers is because we used `--network host` when running the containers. Since the docker containers will use the host's network stack, `port 22` is already taken so we specified `ssh` to be configured in the `6001 port` in `debian-bookworm-ssh`.
+> The reason why we use `port 6001` for the `node-0` and `node-1` containers is because we used `--network host` when running the node containers. Since the docker containers will use the host's network stack, `port 22` is already taken so we specified `ssh` to be configured in the `6001 port` in `debian-bookworm-ssh`.
 
 ### Generate and Destribute SSH Keys
 

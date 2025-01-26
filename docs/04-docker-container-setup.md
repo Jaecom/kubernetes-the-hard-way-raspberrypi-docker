@@ -7,7 +7,7 @@ This step should be done for your `Server EC2`, `Node-0 EC2`, and `Raspberry Pi`
 In you desired directory, copy the [debian-bookworm-ssh](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/debian-bookworm-ssh) dockerfile to create the base image the containers are going to run on. It will have ssh enabled by default.
 
 > [!Note]
-> devian-bookworm-ssh will configure SSH to be run on port 6001.
+> `debian-bookworm-ssh` will configure `SSH` to be run on `port 6001`.
 
 Create the debian-bookworm-ssh dockerfile:
 
