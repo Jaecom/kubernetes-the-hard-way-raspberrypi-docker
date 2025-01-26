@@ -21,55 +21,40 @@ done
 Copy the downloaded files to `node-0` and `node-1` instances. Please use the command below. Do not use the command in the official guide, as you will encounter errors due to the copying the template`kubelet-config.yaml` file which will replace the kubelet-config.yaml file you created beforehand.
 
 ```
-for host in node-0 node-1; do
-  scp \
-    downloads-arm/runc.arm64 \
-    downloads-arm/crictl-v1.32.0-linux-arm64.tar.gz \
-    downloads-arm/cni-plugins-linux-arm64-v1.6.0.tgz \
-    downloads-arm/containerd-2.0.0-linux-arm64.tar.gz \
-    downloads-arm/kubectl \
-    downloads-arm/kubelet \
-    downloads-arm/kube-proxy \
-    configs/99-loopback.conf \
-    configs/containerd-config.toml \
-    configs/kube-proxy-config.yaml \
-    units/containerd.service \
-    units/kubelet.service \
-    units/kube-proxy.service \
-    root@$host:~/
-done
+# Node-0 amd packages
+scp \
+  downloads-amd/runc.amd64 \
+  downloads-amd/crictl-v1.32.0-linux-amd64.tar.gz \
+  downloads-amd/cni-plugins-linux-amd64-v1.6.0.tgz \
+  downloads-amd/containerd-2.0.0-linux-amd64.tar.gz \
+  downloads-amd/kubectl \
+  downloads-amd/kubelet \
+  downloads-amd/kube-proxy \
+  configs/99-loopback.conf \
+  configs/containerd-config.toml \
+  configs/kube-proxy-config.yaml \
+  units/containerd.service \
+  units/kubelet.service \
+  units/kube-proxy.service \
+  root@node-0:~/
 
-#     configs/kubelet-config.yaml is removed
+# Node-1 arm packages
+scp \
+  downloads-arm/runc.arm64 \
+  downloads-arm/crictl-v1.32.0-linux-arm64.tar.gz \
+  downloads-arm/cni-plugins-linux-arm64-v1.6.0.tgz \
+  downloads-arm/containerd-2.0.0-linux-arm64.tar.gz \
+  downloads-arm/kubectl \
+  downloads-arm/kubelet \
+  downloads-arm/kube-proxy \
+  configs/99-loopback.conf \
+  configs/containerd-config.toml \
+  configs/kube-proxy-config.yaml \
+  units/containerd.service \
+  units/kubelet.service \
+  units/kube-proxy.service \
+  root@node-1:~/
 ```
-
-<details>
-<summary><code>amd</code></summary>
-
-```
-for host in node-0 node-1; do
-  scp \
-    downloads-amd/runc.amd64 \
-    downloads-amd/crictl-v1.32.0-linux-amd64.tar.gz \
-    downloads-amd/cni-plugins-linux-amd64-v1.6.0.tgz \
-    downloads-amd/containerd-2.0.0-linux-amd64.tar.gz \
-    downloads-amd/kubectl \
-    downloads-amd/kubelet \
-    downloads-amd/kube-proxy \
-    configs/99-loopback.conf \
-    configs/containerd-config.toml \
-    configs/kube-proxy-config.yaml \
-    units/containerd.service \
-    units/kubelet.service \
-    units/kube-proxy.service \
-    root@$host:~/
-done
-
-#     configs/kubelet-config.yaml is removed
-```
-
-</details>
-
-<br/>
 
 The commands in this lab must be run on each worker instance: `node-0`, `node-1`. Login to the worker instance using the ssh command. Example:
 
@@ -111,10 +96,10 @@ mkdir -p \
 
 {
   mkdir -p containerd
-  tar -xvf crictl-v1.32.0-linux-arm64.tar.gz
-  tar -xvf containerd-2.0.0-linux-arm64.tar.gz -C containerd
-  tar -xvf cni-plugins-linux-arm64-v1.6.0.tgz -C /opt/cni/bin/
-  mv runc.arm64 runc
+  tar -xvf crictl-v1.32.0-linux-amd64.tar.gz
+  tar -xvf containerd-2.0.0-linux-amd64.tar.gz -C containerd
+  tar -xvf cni-plugins-linux-amd64-v1.6.0.tgz -C /opt/cni/bin/
+  mv runc.amd64 runc
   chmod +x crictl kubectl kube-proxy kubelet runc
   mv crictl kubectl kube-proxy kubelet runc /usr/local/bin/
   mv containerd/bin/* /bin/
@@ -122,7 +107,7 @@ mkdir -p \
 ```
 
 <details>
-<summary><code>amd</code></summary>
+<summary><code>arm</code></summary>
 
 ```
 mkdir -p \
@@ -135,10 +120,10 @@ mkdir -p \
 
 {
   mkdir -p containerd
-  tar -xvf crictl-v1.32.0-linux-amd64.tar.gz
-  tar -xvf containerd-2.0.0-linux-amd64.tar.gz -C containerd
-  tar -xvf cni-plugins-linux-amd64-v1.6.0.tgz -C /opt/cni/bin/
-  mv runc.amd64 runc
+  tar -xvf crictl-v1.32.0-linux-arm64.tar.gz
+  tar -xvf containerd-2.0.0-linux-arm64.tar.gz -C containerd
+  tar -xvf cni-plugins-linux-arm64-v1.6.0.tgz -C /opt/cni/bin/
+  mv runc.arm64 runc
   chmod +x crictl kubectl kube-proxy kubelet runc
   mv crictl kubectl kube-proxy kubelet runc /usr/local/bin/
   mv containerd/bin/* /bin/
@@ -214,4 +199,4 @@ node-0   Ready    <none>   1m     v1.28.3
 node-1   Ready    <none>   10s    v1.28.3
 ```
 
-Next: [Setting Up Kubectl](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/10-configuring-kubectl.md)
+Next: [14 - Setting Up Kubectl](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/14-configuring-kubectl.md)

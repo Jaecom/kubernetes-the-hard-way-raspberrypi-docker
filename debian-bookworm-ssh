@@ -3,7 +3,7 @@ FROM debian:bookworm
 
 # Install necessary packages including systemd, OpenSSH server, and ca-certificates
 RUN apt update && \
-    apt install -y systemd systemd-sysv openssh-server nano iproute2 ca-certificates cgroup-tools && \
+    apt install -y systemd systemd-sysv openssh-server nano iproute2 ca-certificates cgroup-tools iputils-ping tcpdump wireguard iptables && \
     update-ca-certificates && \
     apt clean && \
     rm -rf /var/lib/apt/lists/*
@@ -17,14 +17,18 @@ RUN echo 'root:admin' | chpasswd
 # Allow root login (optional and not recommended for production)
 RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
+# Change default SSH port from 22 to 6001
+RUN sed -i 's/^#Port 22/Port 6001/' /etc/ssh/sshd_config \
+    && sed -i 's/^Port 22/Port 6001/' /etc/ssh/sshd_config
+
 # SSH login fix. Otherwise user is kicked off after login
 RUN sed -i 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' /etc/pam.d/sshd
 
 # Enable SSH service
 RUN systemctl enable ssh
 
-# Expose SSH port
-EXPOSE 22
+# Expose the new SSH port
+EXPOSE 6001
 
 # Use systemd as the init system
 CMD ["/lib/systemd/systemd"]

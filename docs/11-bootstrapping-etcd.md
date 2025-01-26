@@ -6,17 +6,18 @@ Copy `etcd` binaries and systemd unit files to the `server` instance:
 
 ```
 scp \
-  downloads-arm/etcd-v3.4.34-linux-arm64.tar.gz \
+  downloads-amd/etcd-v3.4.34-linux-amd64.tar.gz \
   units/etcd.service \
   root@server:~/
+
 ```
 
 <details>
-<summary><code>amd</code></summary>
+<summary><code>arm</code></summary>
 
 ```
 scp \
-  downloads-amd/etcd-v3.4.34-linux-amd64.tar.gz \
+  downloads-arm/etcd-v3.4.34-linux-arm64.tar.gz \
   units/etcd.service \
   root@server:~/
 ```
@@ -37,8 +38,8 @@ ssh root@server
 
 ```
 {
-  tar -xvf etcd-v3.4.34-linux-arm64.tar.gz
-  mv etcd-v3.4.34-linux-arm64/etcd* /usr/local/bin/
+  tar -xvf etcd-v3.4.34-linux-amd64.tar.gz
+  mv etcd-v3.4.34-linux-amd64/etcd* /usr/local/bin/
 }
 
 {
@@ -49,15 +50,16 @@ ssh root@server
 }
 
 mv etcd.service /etc/systemd/system/
+
 ```
 
 <details>
-<summary><code>amd</code></summary>
+<summary><code>arm</code></summary>
 
 ```
 {
-  tar -xvf etcd-v3.4.34-linux-amd64.tar.gz
-  mv etcd-v3.4.34-linux-amd64/etcd* /usr/local/bin/
+  tar -xvf etcd-v3.4.34-linux-arm64.tar.gz
+  mv etcd-v3.4.34-linux-arm64/etcd* /usr/local/bin/
 }
 
 {
@@ -102,4 +104,4 @@ View the status of etcd server. Look out for any errors and warnings:
 systemctl status etcd
 ```
 
-Next: [Setting Up Kubernetes Controllers](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/08-bootstrapping-kubernetes-controllers.md)
+Next: [12 - Setting Up Kubernetes Controllers](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/12-bootstrapping-kubernetes-controllers.md)

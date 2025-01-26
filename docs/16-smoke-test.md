@@ -1,8 +1,5 @@
 # Smoke Test
 
-> [!NOTE]
-> In this section, you can follow the steps without any changes in kelseyhightower's official guide: [12-smoke-test.md](https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/12-smoke-test.md). I added the shortened version of the code below for convenience.
-
 ## Data Encryption
 
 The following guide will be run in your `jumpbox` container.
@@ -142,8 +139,7 @@ nginx version: nginx/1.25.3
 Expose the nginx deployment using a NodePort service:
 
 ```
-kubectl expose deployment nginx \
- --port 80 --type NodePort
+kubectl create service nodeport nginx --tcp=80:80 --node-port=31703
 ```
 
 Retrieve the node port assigned to the nginx service:
@@ -171,4 +167,4 @@ ETag: "6537cac7-267"
 Accept-Ranges: bytes
 ```
 
-Next: [Cleaning Up](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/13-cleanup.md)
+Next: [17 - Cleaning Up](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/17-cleanup.md)

@@ -1,8 +1,5 @@
 # Provisioning a CA and Generating TLS Certificates
 
-> [!NOTE]
-> In this section, you can follow the steps without any changes in kelseyhightower's official guide: [04-certificate-authority](https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/04-certificate-authority.md). I added the shortened version of the code below for convenience.
-
 ## Certificate Authority:
 
 Inside the `kubernetes-the-hard-way-raspberrypi-docker` directory, run generate the configuration file, certificate, and private key.
@@ -74,4 +71,4 @@ scp \
   root@server:~/
 ```
 
-Next: [Setting up Kubernetes Config](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/05-kubernetes-configuration-files.md)
+Next: [09 - Setting up Kubernetes Config](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/09-kubernetes-configuration-files.md)

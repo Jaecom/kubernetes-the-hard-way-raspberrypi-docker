@@ -6,10 +6,10 @@ In your `jumpbox` instance, copy Kubernetes binaries and systemd unit files to t
 
 ```
 scp \
-  downloads-arm/kube-apiserver \
-  downloads-arm/kube-controller-manager \
-  downloads-arm/kube-scheduler \
-  downloads-arm/kubectl \
+  downloads-amd/kube-apiserver \
+  downloads-amd/kube-controller-manager \
+  downloads-amd/kube-scheduler \
+  downloads-amd/kubectl \
   units/kube-apiserver.service \
   units/kube-controller-manager.service \
   units/kube-scheduler.service \
@@ -19,14 +19,14 @@ scp \
 ```
 
 <details>
-<summary><code>amd</code></summary>
+<summary><code>arm</code></summary>
 
 ```
 scp \
-  downloads-amd/kube-apiserver \
-  downloads-amd/kube-controller-manager \
-  downloads-amd/kube-scheduler \
-  downloads-amd/kubectl \
+  downloads-arm/kube-apiserver \
+  downloads-arm/kube-controller-manager \
+  downloads-arm/kube-scheduler \
+  downloads-arm/kubectl \
   units/kube-apiserver.service \
   units/kube-controller-manager.service \
   units/kube-scheduler.service \
@@ -167,8 +167,8 @@ curl -k --cacert ca.crt https://server.kubernetes.local:6443/version
   "buildDate": "2024-12-11T17:59:15Z",
   "goVersion": "go1.23.3",
   "compiler": "gc",
-  "platform": "linux/arm64"
+  "platform": "linux/amd64"
 }
 ```
 
-Next: [Setting Up Worker Nodes](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/09-bootstrapping-kubernetes-workers.md)
+Next: [13 - Setting Up Worker Nodes](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/13-bootstrapping-kubernetes-workers.md)

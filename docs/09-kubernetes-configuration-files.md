@@ -1,8 +1,5 @@
 # Generating Kubernetes Configuration Files for Authentication
 
-> [!NOTE]
-> In this section, you can follow the steps without any changes in kelseyhightower's official guide: [05-kubernetes-configuration-files.md](https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/05-kubernetes-configuration-files.md). I added the shortened version of the code below for convenience.
-
 ## Generating Kubernetes Configuration Files
 
 Generate kubelet, kube-proxy, kube-controller, kube-scheduler, and admin kubernetes configuration files
@@ -154,4 +151,4 @@ scp admin.kubeconfig \
   root@server:~/
 ```
 
-Next: [Setting Up Encryption](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/06-data-encryption-keys.md)
+Next: [10 - Setting Up Encryption](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/10-data-encryption-keys.md)

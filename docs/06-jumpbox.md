@@ -129,6 +129,4 @@ Client Version: v1.32.0
 Kustomize Version: v5.5.0
 ```
 
-Next: [Provisioning Resources - Default](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/03-compute-resources.md)
-
-Next: [Provisioning Resources - Using SSH Config](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/03-compute-resources-ssh-config.md)
+Next: [07 - Provisioning Resources](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/07-compute-resources-ssh-config.md)

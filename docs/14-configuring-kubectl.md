@@ -1,8 +1,5 @@
 # Configuring kubectl for Remote Access
 
-> [!NOTE]
-> In this section, you can follow the steps without any changes in kelseyhightower's official guide: [10-configuring-kubectl.md](https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/10-configuring-kubectl.md). I added the shortened version of the code below for convenience.
-
 ## The Admin Kubernetes Configuration File
 
 You should be able to ping `server.kubernetes.local` based on the /etc/hosts DNS entry from a previous lap:
@@ -73,4 +70,4 @@ node-0   Ready    <none>   5m38s   v1.32.0
 node-1   Ready    <none>   3m32s   v1.32.0
 ```
 
-Next: [Configuring Pod Networks](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/11-pod-network-routes.md)
+Next: [15 - Configuring Pod Networks](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/15-pod-network-routes.md)
