@@ -14,52 +14,27 @@ This is a brief overview of the IP Addresses we are going to assign to each cont
 > [!Note]
 > The `server` container in `EC2 A` will act as a central hub for the VPN network. It will forward ip traffic so that the different containers are able to communicate with one another.
 
-## Generate Private and Public Key
-
-Ceate a `private.key` and `public.key` in each of the 4 containers. You will need 4 sets of keys for each container.
-
-```
-# In your server container
-wg genkey | tee wireguard_server_private.key | wg pubkey > wireguard_server_public.key
-
-# In your jumpbox container
-wg genkey | tee wireguard_jumpbox_private.key | wg pubkey > wireguard_jumpbox_public.key
-
-# In your node-0 container
-wg genkey | tee wireguard_node-0_private.key | wg pubkey > wireguard_node-0_public.key
-
-# In your node-1 container
-wg genkey | tee wireguard_node-1_private.key | wg pubkey > wireguard_node-1_public.key
-```
-
-```
-# In your server container
-echo "Server Private Key: $(cat wireguard_server_private.key)"
-echo "Server Public Key: $(cat wireguard_server_public.key)"
-
-# In your jumpbox container
-echo "Jumpbox Private Key: $(cat wireguard_jumpbox_private.key)"
-echo "Jumpbox Public Key: $(cat wireguard_jumpbox_public.key)"
-
-# In your node-0 container
-echo "Node-0 Private Key: $(cat wireguard_node-0_private.key)"
-echo "Node-0 Public Key: $(cat wireguard_node-0_public.key)"
-
-# In your node-1 container
-echo "Node-1 Private Key: $(cat wireguard_node-1_private.key)"
-echo "Node-1 Public Key: $(cat wireguard_node-1_public.key)"
-
-```
-
 ## Wireguard Config
 
 ### Server Container
 
-In your Server EC2 Container `ssh` into your `server` docker container:
+In your `EC2 A Instance`, ssh into your `server` docker container:
 
 ```
-ssh root@localhost -p 2223
-# Password is admin
+ssh root@localhost -p 2223 # Password is admin
+```
+
+Generate `public` and `private` keys:
+
+```
+wg genkey | tee wireguard_server_private.key | wg pubkey > wireguard_server_public.key
+```
+
+Print the keys:
+
+```
+echo "Server Private Key: $(cat wireguard_server_private.key)"
+echo "Server Public Key: $(cat wireguard_server_public.key)"
 ```
 
 Create a wireguard config file at `/etc/wireguard/wg0.conf`
@@ -102,13 +77,44 @@ You need to repeat this process for the `jumpbox`, `node-0`, and `node-1` contai
 
 ## Jumpbox Container
 
+Exit the `server` terminal:
+
+```
+exit
+```
+
+Ssh into your `jumpbox` contianer:
+
+```
+ssh root@localhost -p 2222
+```
+
+Generate `public` and `private` keys:
+
+```
+wg genkey | tee wireguard_jumpbox_private.key | wg pubkey > wireguard_jumpbox_public.key
+```
+
+Print the keys:
+
+```
+echo "Jumpbox Private Key: $(cat wireguard_jumpbox_private.key)"
+echo "Jumpbox Public Key: $(cat wireguard_jumpbox_public.key)"
+```
+
+Edit the `/etc/wireguard/wg0.conf` file
+
+```
+nano /etc/wireguard/wg0.conf
+```
+
 ```
 [Interface]
 Address = 10.0.0.2/24
-PrivateKey = cA3M6UOVlTIdaukDGmcL/+QIZoYv7dnSCaYxlaRkIX8=
+PrivateKey = cA3M6UOVlTIdaukDGmcL/+QIZoYv7dnSCaYxlaRkIX8= # Jumpbox Private Key
 
 [Peer]
-PublicKey = kyHQsgAl68A3s7f4BJb2BsDtEGBdG4MIDyJmlGu9GyE=
+PublicKey = kyHQsgAl68A3s7f4BJb2BsDtEGBdG4MIDyJmlGu9GyE= # Server Public Key
 Endpoint = <EC2 A Public IP Address>:51820
 AllowedIPs = 10.0.0.0/16, 10.244.0.0/16
 PersistentKeepalive = 25
@@ -120,13 +126,38 @@ wg-quick up wg0
 
 ## Node-0 Container
 
+In your `EC2 B instance`, ssh into your `node-0` container:
+
+```
+ssh root@localhost -p 6001
+```
+
+Generate `public` and `private` keys:
+
+```
+wg genkey | tee wireguard_node-0_private.key | wg pubkey > wireguard_node-0_public.key
+```
+
+Print the keys:
+
+```
+echo "Node-0 Private Key: $(cat wireguard_node-0_private.key)"
+echo "Node-0 Public Key: $(cat wireguard_node-0_public.key)"
+```
+
+Then, edit the `/etc/wireguard/wg0.conf` file
+
+```
+nano /etc/wireguard/wg0.conf
+```
+
 ```
 [Interface]
 Address = 10.0.1.1/24
-PrivateKey = QD6VPu6ZfU6IpOghkLFZpDoh3uofAJ0MLwKDpfHUh1o=
+PrivateKey = QD6VPu6ZfU6IpOghkLFZpDoh3uofAJ0MLwKDpfHUh1o= # Node-0 Private Key
 
 [Peer]
-PublicKey = kyHQsgAl68A3s7f4BJb2BsDtEGBdG4MIDyJmlGu9GyE=
+PublicKey = kyHQsgAl68A3s7f4BJb2BsDtEGBdG4MIDyJmlGu9GyE= # Server Public Key
 Endpoint = <EC2 A Public IP Address>:51820
 AllowedIPs = 10.0.0.0/16, 10.244.0.0/16
 PersistentKeepalive = 25
@@ -138,13 +169,38 @@ wg-quick up wg0
 
 ## Node-1 Container
 
+In your `Raspbeery PI`, ssh into your `node-1` container:
+
+```
+ssh root@localhost -p 6001
+```
+
+Generate the keys:
+
+```
+wg genkey | tee wireguard_node-1_private.key | wg pubkey > wireguard_node-1_public.key
+```
+
+Print the keys:
+
+```
+echo "Node-0 Private Key: $(cat wireguard_node-1_private.key)"
+echo "Node-0 Public Key: $(cat wireguard_node-1_public.key)"
+```
+
+Then, edit the `/etc/wireguard/wg0.conf` file
+
+```
+nano /etc/wireguard/wg0.conf
+```
+
 ```
 [Interface]
 Address = 10.0.2.1/24
-PrivateKey = IA4tXR3v+WFuSMx71islv+R8/VdOyGljcc7rlRH7DEo=
+PrivateKey = IA4tXR3v+WFuSMx71islv+R8/VdOyGljcc7rlRH7DEo= # Node-1 Private Key
 
 [Peer]
-PublicKey = kyHQsgAl68A3s7f4BJb2BsDtEGBdG4MIDyJmlGu9GyE=
+PublicKey = kyHQsgAl68A3s7f4BJb2BsDtEGBdG4MIDyJmlGu9GyE= # Server Public Key
 Endpoint = <EC2 A Public IP Address>:51820
 AllowedIPs = 10.0.0.0/16, 10.244.0.0/16
 PersistentKeepalive = 25
