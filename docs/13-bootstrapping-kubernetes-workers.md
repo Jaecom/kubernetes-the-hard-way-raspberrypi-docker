@@ -82,7 +82,7 @@ Swap should already be disabled from your host raspberry pi machine. Check with 
 swapon --show
 ```
 
-You should see nothing outputed in the terminal. If something is outputted, you need to diable swap in your host raspberry pi using the [00-raspberry-pi-setup](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/00-raspberry-pi-setup.md) guide and restart your docker containers.
+You should see nothing outputed in the terminal. If something is outputted, you need to diable swap in your host raspberry pi using the [03-raspberry-pi-setup](https://github.com/Jaecom/kubernetes-the-hard-way-raspberrypi-docker/blob/main/docs/03-raspberry-pi-setup.md) guide and restart your docker containers.
 
 ### Create the installation directories
 
@@ -132,8 +132,6 @@ mkdir -p \
 ```
 
 </details>
-
-<br/>
 
 ### Congfigure Services
 
