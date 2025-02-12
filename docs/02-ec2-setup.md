@@ -26,7 +26,7 @@ Edit the Security Group of each instance to allow inbound rules of the following
 ## Install Docker
 
 Docker
-You must have docker installed in your EC2 Instances. In case of a `Ubuntu`, use the offical docs: [Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
+You must have docker installed in your EC2 Instances. In case of a `Ubuntu`, use the official docs: [Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
 
 <!-- Add Command to Create EC2 Container and open ports -->
 
